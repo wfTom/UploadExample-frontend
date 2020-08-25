@@ -16,21 +16,18 @@ class App extends Component {
   };
 
   async componentDidMount() {
-    const response = await api.get("posts");
+    const response = await api.get('posts');
     console.log(response);
-    // if(!!response.data){
-      this.setState({
-        uploadedFiles: response.data.posts.map(file => ({
-          id: file._id,
-          name: file.name,
-          readableSize: filesize(file.size),
-          preview: file.url,
-          uploaded: true,
-          url: file.url
-        }))
-      });
-    // }
-
+    this.setState({
+      uploadedFiles: response.data.posts.map((file) => ({
+        id: file._id,
+        name: file.name,
+        readableSize: filesize(file.size),
+        preview: file.url,
+        uploaded: true,
+        url: file.url,
+      })),
+    });
   }
 
   handleUpload = (files) => {
